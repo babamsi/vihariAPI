@@ -815,7 +815,6 @@ def calculateOneWayPricing(nameZone, distance, duration, trip, twoWayDistance=0)
         "driverAllowance": farePrice
     }
     extraHours = {
-        cars:[]
     }
     price = {
         "fareDetails": fareDetails,
@@ -827,6 +826,7 @@ def calculateOneWayPricing(nameZone, distance, duration, trip, twoWayDistance=0)
     
     if trip == 'oneWay':
         for i in cars:
+            extraHours[i] = []
             if i in zoneName.keys():
                 for j in zoneName[i]['hourly_price']:
                     # print( type(j['from']), type(j['to']))
@@ -845,6 +845,7 @@ def calculateOneWayPricing(nameZone, distance, duration, trip, twoWayDistance=0)
     elif trip == 'roundTrip':
         distance = distance + int(float(twoWayDistance))
         for i in cars:
+            extraHours[i] = []
             if i in zoneName.keys():
                 for j in zoneName[i + "_round"]['hourly_price_round']:
                     # print( type(j['from']), type(j['to']))
